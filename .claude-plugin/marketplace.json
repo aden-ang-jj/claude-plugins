@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "aden-plugins",
+  "description": "Personal Claude Code plugin marketplace by Aden Ang.",
+  "owner": {
+    "name": "Aden Ang",
+    "email": "aden.ang.jj@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "langfuse",
+      "source": "./plugins/langfuse",
+      "description": "Scaffolds a self-hosted Langfuse v3 docker-compose stack with strong secrets and optional admin/org provisioning.",
+      "author": {
+        "name": "Aden Ang"
+      },
+      "homepage": "https://github.com/aden-ang-jj/claude-plugins/tree/main/plugins/langfuse",
+      "repository": "https://github.com/aden-ang-jj/claude-plugins",
+      "license": "MIT",
+      "keywords": ["langfuse", "llm", "observability", "tracing", "docker", "self-hosted"],
+      "category": "devops"
+    }
+  ]
+}

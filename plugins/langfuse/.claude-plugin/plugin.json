@@ -1,0 +1,13 @@
+{
+  "name": "langfuse",
+  "description": "Self-host Langfuse v3 locally with docker-compose. Includes the /langfuse:self-host skill for interactive scaffolding.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Aden Ang",
+    "email": "aden.ang.jj@gmail.com"
+  },
+  "homepage": "https://github.com/aden-ang-jj/claude-plugins/tree/main/plugins/langfuse",
+  "repository": "https://github.com/aden-ang-jj/claude-plugins",
+  "license": "MIT",
+  "keywords": ["langfuse", "llm", "observability", "tracing", "docker", "self-hosted"]
+}
