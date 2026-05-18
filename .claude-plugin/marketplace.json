@@ -19,6 +19,19 @@
       "license": "MIT",
       "keywords": ["langfuse", "llm", "observability", "tracing", "docker", "self-hosted"],
       "category": "devops"
+    },
+    {
+      "name": "ai-bootstrap",
+      "source": "./plugins/ai-bootstrap",
+      "description": "Bootstrap a production-shaped Python AI project with multi-provider LLM support (OpenAI / OpenRouter / DeepInfra) via the OpenAI SDK pattern.",
+      "author": {
+        "name": "Aden Ang"
+      },
+      "homepage": "https://github.com/aden-ang-jj/claude-plugins/tree/main/plugins/ai-bootstrap",
+      "repository": "https://github.com/aden-ang-jj/claude-plugins",
+      "license": "MIT",
+      "keywords": ["ai", "llm", "openai", "openrouter", "deepinfra", "python", "scaffold", "bootstrap", "uv"],
+      "category": "development"
     }
   ]
 }

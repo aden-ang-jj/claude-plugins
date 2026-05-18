@@ -1,0 +1,27 @@
+# secrets — never commit
+.env
+
+# python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# venv
+.venv/
+venv/
+
+# uv
+.uv-cache/
+
+# tooling
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

@@ -1,0 +1,13 @@
+{
+  "name": "ai-bootstrap",
+  "description": "Bootstrap a production-shaped Python AI project with multi-provider LLM support (OpenAI / OpenRouter / DeepInfra). Includes the /ai-bootstrap:scaffold skill.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Aden Ang",
+    "email": "aden.ang.jj@gmail.com"
+  },
+  "homepage": "https://github.com/aden-ang-jj/claude-plugins/tree/main/plugins/ai-bootstrap",
+  "repository": "https://github.com/aden-ang-jj/claude-plugins",
+  "license": "MIT",
+  "keywords": ["ai", "llm", "openai", "openrouter", "deepinfra", "python", "scaffold", "bootstrap", "uv"]
+}

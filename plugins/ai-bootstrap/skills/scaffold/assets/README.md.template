@@ -1,0 +1,82 @@
+# {{PROJECT_NAME}}
+
+AI app scaffolded by `/ai-bootstrap:scaffold`. Active provider: `{{DEFAULT_PROVIDER}}`.
+
+## Quick start
+
+1. Open `.env` and paste your API key on the line matching `LLM_PROVIDER`:
+   - `openai`     → `OPENAI_API_KEY=sk-...`
+   - `openrouter` → `OPENROUTER_API_KEY=sk-or-...`
+   - `deepinfra`  → `DEEPINFRA_API_KEY=...`
+2. Run the smoke test:
+
+   ```sh
+   uv run hello.py
+   ```
+
+   You should see the model's reply, plus token and latency stats.
+
+## What's where
+
+| File | Purpose |
+|---|---|
+| `config.py` | Typed settings (Pydantic). Reads `.env`, validates on import. Edit `PROVIDERS` to add a new provider. |
+| `llm.py` | Single seam for all LLM calls. `call_llm()` + `stream_llm()`. Add caching/tracing/retries here, not at call sites. |
+| `hello.py` | Smoke test that exercises the seam end-to-end. |
+| `prompts/` | System prompts as files (not inline strings). Load with `Path(...).read_text()`. |
+| `.env` | Secrets. **Never commit** (already gitignored). |
+| `.env.example` | Committed template — the contract for what env vars exist. |
+| `pyproject.toml` | Dependencies, managed by `uv`. |
+
+## Switching providers
+
+Edit `LLM_PROVIDER` in `.env` and make sure the matching `*_API_KEY` is filled in:
+
+| `LLM_PROVIDER` | What it's good for |
+|---|---|
+| `openai` | GPT models, direct from OpenAI. Lowest-latency path to GPT-family. |
+| `openrouter` | One key, ~300 models (Anthropic, OpenAI, DeepSeek, Llama, Mistral, …). Best for A/B testing models. |
+| `deepinfra` | Cheap hosted open-source models (Llama, Mixtral, Qwen, DeepSeek-V3). |
+
+No code changes — `llm.py` reads the env var each time the client is built.
+
+## Using different models
+
+Override per-call:
+
+```python
+response = call_llm(messages, model="anthropic/claude-opus-4")  # via openrouter
+```
+
+Or set a project-wide default in `.env`:
+
+```
+LLM_DEFAULT_MODEL=anthropic/claude-opus-4
+```
+
+## Adding a new provider
+
+1. In `config.py`, add an entry to `PROVIDERS` with its `base_url`, the attribute name for its key, and a `default_model`.
+2. Add the key field to `Settings` (e.g. `cohere_api_key: str | None = None`).
+3. Add `COHERE_API_KEY=` to `.env` and `.env.example`.
+4. Add the provider to the `Provider` `Literal` type.
+
+The wrapper code in `llm.py` doesn't need to change — it dispatches off `PROVIDERS`.
+
+## Streaming
+
+`stream_llm()` returns an iterator of text fragments:
+
+```python
+from llm import stream_llm
+
+for chunk in stream_llm([{"role": "user", "content": "Tell me a story."}]):
+    print(chunk, end="", flush=True)
+```
+
+## What's intentionally not here
+
+- **No observability / tracing.** Use the `langfuse` plugin if you want Langfuse.
+- **No web framework.** Add FastAPI or whatever you prefer when you need an HTTP surface.
+- **No RAG / vector DB.** Same — bring your own when the project actually needs retrieval.
+- **No agent loop.** This is a *bootstrap*, not an agent framework.
